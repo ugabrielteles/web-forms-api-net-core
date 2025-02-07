@@ -60,5 +60,13 @@ namespace OrderApi.Services.Contracts
         /// <param name="orderId"></param>
         /// <returns></returns>
         Task<(ValidationResult Result, Order? Entity)> SendOrderToDelivered(int orderId);
+
+        /// <summary>
+        /// Alterar o status da Ordem para create (estado inicial da ordem)
+        /// </summary>
+        /// <param name="Result"></param>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        Task<(ValidationResult Result, Order? Entity)> SendOrderToCreate(int orderId);
     }
 }

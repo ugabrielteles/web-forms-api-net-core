@@ -17,11 +17,13 @@ namespace OrderApi.Services
         private readonly ILogger _logger;
         private readonly IOrderRepository _orderRepository;
         private readonly IOrderStatusRepository _orderStatusRepository;
+        private readonly IDeliveryOrderRepository _deliveryOrderRepository;
 
-        public OrderService(IOrderRepository orderRepository, IOrderStatusRepository orderStatusRepository, ILogger<OrderService> logger)
+        public OrderService(IOrderRepository orderRepository, IOrderStatusRepository orderStatusRepository, IDeliveryOrderRepository deliveryOrderRepository, ILogger<OrderService> logger)
         {
             _orderRepository = orderRepository;
             _orderStatusRepository = orderStatusRepository;
+            _deliveryOrderRepository = deliveryOrderRepository;
             _logger = logger;
         }
 
@@ -106,6 +108,45 @@ namespace OrderApi.Services
         /// <returns></returns>
         public async Task<IList<OrderStatus>> GetByOrderStatus() => await _orderStatusRepository.GetAll();
 
+        public async Task<(ValidationResult Result, Order? Entity)> SendOrderToCreate(int orderId)
+        {
+            _logger.LogDebug("Envio da ordem: {0} para criada iniciada", orderId);
+
+            var result = new ValidationResult();
+
+            try
+            {
+                var order = await _orderRepository.GetById(orderId);
+
+                if (order == null)
+                    throw new DomainException($"A Ordem: {orderId} não foi encontrada");
+
+                var orderStatus = await _orderStatusRepository.GetById((int)EnOrderStatus.Create);
+
+                order.OrderStatusId = orderStatus!.OrderStatusId;                
+
+                var entity = await _orderRepository.UpdateOrderStatus(order);
+
+                  _logger.LogDebug("Envio da ordem: {0} para criada finalizada com sucesso", orderId);
+
+                return (result, entity);
+            }
+            catch (DomainException exception)
+            {
+                _logger.LogError(exception, exception.Message);
+                _logger.LogDebug("Envio da ordem: {0} para criada finalizada com erro", orderId);
+                result.Errors.Add(new ValidationFailure(propertyName: exception.Message, errorMessage: exception.Message));
+                return (result, null);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogCritical(exception, exception.Message);
+                _logger.LogDebug("Envio da ordem: {0} para criada finalizada com erro", orderId);
+                result.Errors.Add(new ValidationFailure(propertyName: exception.Message, errorMessage: exception.Message));
+                return (result, null);
+            }
+        }
+
         /// <summary>
         /// Alterar o status da Ordem para entregue
         /// </summary>
@@ -129,16 +170,23 @@ namespace OrderApi.Services
 
                 order.OrderStatusId = orderStatus!.OrderStatusId;
 
-                //Quando a ordem for para entregue tem que salvar na tabela de Controle de Entrega a ordem e a data com horario
-                order.DeliveryOrder = new DeliveryOrder
+                var deliveryOrder = await _deliveryOrderRepository.Search(x => x.OrderId == orderId);
+
+                if(deliveryOrder != null)
+                {
+                    await _deliveryOrderRepository.Delete(deliveryOrder.DeliveryOrderId);
+                } 
+
+                var entity = await _orderRepository.UpdateOrderStatus(order);
+                
+                await _deliveryOrderRepository.Add( new DeliveryOrder
                 {
                     DeliveryDate = DateTime.Now,
                     OrderId = order.OrderId
-                };
+                });               
 
-                var entity = await _orderRepository.Update(order);
 
-                  _logger.LogDebug("Envio da ordem: {0} para entregue finalizada com sucesso", orderId);
+                _logger.LogDebug("Envio da ordem: {0} para entregue finalizada com sucesso", orderId);
 
                 return (result, entity);
             }
@@ -181,7 +229,7 @@ namespace OrderApi.Services
 
                 order.OrderStatusId = orderStatus!.OrderStatusId;
 
-                var entity = await _orderRepository.Update(order);
+                var entity = await _orderRepository.UpdateOrderStatus(order);
 
                 _logger.LogDebug("Envio da ordem: {0} para em rota de entrega finalizada com sucesso", orderId);
 
@@ -226,7 +274,7 @@ namespace OrderApi.Services
 
                 order.OrderStatusId = orderStatus!.OrderStatusId;
 
-                var entity = await _orderRepository.Update(order);
+                var entity = await _orderRepository.UpdateOrderStatus(order);
 
                  _logger.LogDebug("Envio da ordem: {0} para em rota de entrega finalizada com sucesso", orderId);
 

@@ -45,7 +45,7 @@ namespace OrderApi.Repositories
             return entity;
         }
 
-        public async Task<IList<OrderStatus>> GetAll() => await _context.OrderStatus.Include(x => x.Orders).ToListAsync();
+        public async Task<IList<OrderStatus>> GetAll() => await _context.OrderStatus.Include(x => x.Orders)!.ThenInclude(x => x.DeliveryOrder).ToListAsync();
 
         public async Task<OrderStatus?> GetById(int id) => await _context.OrderStatus.Include(x => x.Orders).FirstOrDefaultAsync(x => x.OrderStatusId == id);
 
