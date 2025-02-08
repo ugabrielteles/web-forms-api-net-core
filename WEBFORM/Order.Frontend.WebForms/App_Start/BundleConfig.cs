@@ -13,6 +13,7 @@ namespace Order.Frontend.WebForms
         public static void RegisterBundles(BundleCollection bundles)
         {
             RegisterJQueryScriptManager();
+            RegisterSignalRScriptManager();
 
             bundles.Add(new ScriptBundle("~/bundles/WebFormsJs").Include(
                             "~/Scripts/WebForms/WebForms.js",
@@ -35,6 +36,7 @@ namespace Order.Frontend.WebForms
             // pronto para a produção, utilize a ferramenta de build em https://modernizr.com para escolher somente os testes que precisa
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                             "~/Scripts/modernizr-*"));
+            
         }
 
         public static void RegisterJQueryScriptManager()
@@ -44,6 +46,18 @@ namespace Order.Frontend.WebForms
                 {
                     Path = "~/scripts/jquery-3.7.0.min.js",
                     DebugPath = "~/scripts/jquery-3.7.0.js",
+                    CdnPath = "http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.0.min.js",
+                    CdnDebugPath = "http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.0.js"
+                });
+        }
+
+        public static void RegisterSignalRScriptManager()
+        {
+            ScriptManager.ScriptResourceMapping.AddDefinition("signalR",
+                new ScriptResourceDefinition
+                {
+                    Path = "~/scripts/jquery.signalR-2.4.3.min.js",
+                    DebugPath = "~/scripts/jquery.signalR-2.4.3.js",
                     CdnPath = "http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.0.min.js",
                     CdnDebugPath = "http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.0.js"
                 });

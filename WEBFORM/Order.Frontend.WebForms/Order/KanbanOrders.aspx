@@ -37,7 +37,7 @@
 
         </ContentTemplate>
         <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="btnAtualizarStatus" />            
+            <asp:AsyncPostBackTrigger ControlID="btnAtualizarStatus" />
         </Triggers>
     </asp:UpdatePanel>
     <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="updPanel">
@@ -54,6 +54,8 @@
             <div class="modal-backdrop fade show"></div>
         </ProgressTemplate>
     </asp:UpdateProgress>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.18/signalr.min.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -88,6 +90,40 @@
 
                 atualizarStatus(orderId, newStatus);
             });
+
+
+            const connection = new signalR.HubConnectionBuilder()
+                .withUrl("https://localhost:7139/hubs/order")
+                .build();
+
+            connection.on("ReceiveMessage", (message) => {
+
+                const container = $("div").find('[data-status="1"]')
+                var order = JSON.parse(message);
+
+                var orderEle = '<div class="kanban-item" data-order-status-id="1" draggable="true" data-order-id="'+ order.OrderId +'"> Pedido #'+ order.OrderId +' - R$ '+order.Value.toFixed(2) +' </div>'
+
+                $(container).find('.kanban-items').append(orderEle)
+            });
+
+            connection.start()
+                .then(() => {
+                    console.log("SignalR connection started.");
+                })
+                .catch(err => {
+                    console.error("Error connecting to SignalR: ", err);
+                });
+
+            window.addEventListener("beforeunload", () => {
+                connection.stop().then(() => {
+                    console.log("SignalR connection stopped.");
+                }).catch(err => {
+                    console.error("Error stopping SignalR connection: ", err);
+                });
+            });
+
+
+
         });
 
         function atualizarStatus(orderId, newStatus) {

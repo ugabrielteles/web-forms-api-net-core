@@ -1,4 +1,5 @@
-﻿using Order.Frontend.WebForms.Utils;
+﻿using Microsoft.AspNet.SignalR.Client;
+using Order.Frontend.WebForms.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Order.Frontend.WebForms.Order
             {
                 await LoadKanbanBoard();
             }
-        }
+        }        
 
         private async Task LoadKanbanBoard()
         {

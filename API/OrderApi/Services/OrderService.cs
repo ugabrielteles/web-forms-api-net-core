@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.SignalR;
 using OrderApi.Enums;
 using OrderApi.Exceptions;
+using OrderApi.Hubs;
 using OrderApi.Models;
 using OrderApi.Repositories.Contracts;
 using OrderApi.Services.Contracts;
@@ -18,13 +20,19 @@ namespace OrderApi.Services
         private readonly IOrderRepository _orderRepository;
         private readonly IOrderStatusRepository _orderStatusRepository;
         private readonly IDeliveryOrderRepository _deliveryOrderRepository;
+        private readonly IHubContext<OrderHub> _orderHub;
 
-        public OrderService(IOrderRepository orderRepository, IOrderStatusRepository orderStatusRepository, IDeliveryOrderRepository deliveryOrderRepository, ILogger<OrderService> logger)
+        public OrderService(IOrderRepository orderRepository,
+                            IOrderStatusRepository orderStatusRepository,
+                            IDeliveryOrderRepository deliveryOrderRepository,
+                            ILogger<OrderService> logger,
+                            IHubContext<OrderHub> orderHub)
         {
             _orderRepository = orderRepository;
             _orderStatusRepository = orderStatusRepository;
             _deliveryOrderRepository = deliveryOrderRepository;
             _logger = logger;
+            _orderHub = orderHub;
         }
 
         /// <summary>
@@ -70,6 +78,8 @@ namespace OrderApi.Services
                 });
 
                  _logger.LogDebug("Criação de uma nova ordem finalizada com sucesso");
+
+                 await _orderHub.Clients.All.SendAsync("ReceiveMessage", System.Text.Json.JsonSerializer.Serialize(entity));
 
                 return (result, entity);
             }

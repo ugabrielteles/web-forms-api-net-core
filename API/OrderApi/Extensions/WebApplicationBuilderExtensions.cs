@@ -49,6 +49,15 @@ namespace OrderApi.Extensions
             return builder;
         }
 
+        public static WebApplicationBuilder AndAddSignalR(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddSignalR(o => {
+                o.EnableDetailedErrors = true;
+            });
+
+            return builder;
+        }
+
         public static WebApplicationBuilder AndAddAuthentication(this WebApplicationBuilder builder)
         {
             var services = builder.Services;

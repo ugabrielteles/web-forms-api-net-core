@@ -288,3 +288,54 @@ StackTrace:    em System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess
    em ApiClient.<GetAsync>d__4.MoveNext() na C:\dev\web-forms-api-net-core\WEBFORM\Order.Frontend.WebForms\Utils\ApiClient.cs:linha 45
 2025-02-07 19:33:20 - Error: Não foi possível cadastrar, entre em contato com administrador do sistema.Detalhe: Erro na requisição GET para orders/order-by-status: Ocorreu um erro ao enviar a solicitação.
 StackTrace: 
+2025-02-07 20:12:06 - Error: Ocorreu um erro ao enviar a solicitação.
+StackTrace:    em System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   em ApiClient.<PostNotHeadersAsync>d__7.MoveNext() na C:\dev\web-forms-api-net-core\WEBFORM\Order.Frontend.WebForms\Utils\ApiClient.cs:linha 108
+2025-02-07 20:12:06 - Error: Erro na requisição POST (sem headers) para auth/login: Ocorreu um erro ao enviar a solicitação.
+StackTrace:    em ApiClient.<PostNotHeadersAsync>d__7.MoveNext() na C:\dev\web-forms-api-net-core\WEBFORM\Order.Frontend.WebForms\Utils\ApiClient.cs:linha 115
+--- Fim do rastreamento de pilha do local anterior onde a exceção foi gerada ---
+   em System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   em Order.Frontend.WebForms.Login.<AuthenticateUser>d__2.MoveNext() na C:\dev\web-forms-api-net-core\WEBFORM\Order.Frontend.WebForms\Login.aspx.cs:linha 134
+2025-02-07 20:12:06 - Error: Não foi possível autenticar, entre em contato com administrador do sistema.Detalhe: Erro na requisição POST (sem headers) para auth/login: Ocorreu um erro ao enviar a solicitação.
+StackTrace: 
+2025-02-07 20:15:14 - Error: Resposta não está disponível neste contexto.
+StackTrace:    em System.Web.UI.Page.get_Response()
+   em ApiClient.<HandleResponse>d__10.MoveNext() na C:\dev\web-forms-api-net-core\WEBFORM\Order.Frontend.WebForms\Utils\ApiClient.cs:linha 167
+--- Fim do rastreamento de pilha do local anterior onde a exceção foi gerada ---
+   em System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   em ApiClient.<PostNotHeadersAsync>d__7.MoveNext() na C:\dev\web-forms-api-net-core\WEBFORM\Order.Frontend.WebForms\Utils\ApiClient.cs:linha 109
+--- Fim do rastreamento de pilha do local anterior onde a exceção foi gerada ---
+   em System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   em Order.Frontend.WebForms.Login.<AuthenticateUser>d__2.MoveNext() na C:\dev\web-forms-api-net-core\WEBFORM\Order.Frontend.WebForms\Login.aspx.cs:linha 134
+2025-02-07 20:15:14 - Error: Não foi possível autenticar, entre em contato com administrador do sistema.Detalhe: Resposta não está disponível neste contexto.
+StackTrace: 
+2025-02-07 21:04:17 - Error: Resposta não está disponível neste contexto.
+StackTrace:    em System.Web.UI.Page.get_Response()
+   em ApiClient.<HandleResponse>d__10.MoveNext() na C:\dev\web-forms-api-net-core\WEBFORM\Order.Frontend.WebForms\Utils\ApiClient.cs:linha 167
+--- Fim do rastreamento de pilha do local anterior onde a exceção foi gerada ---
+   em System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   em ApiClient.<PostNotHeadersAsync>d__7.MoveNext() na C:\dev\web-forms-api-net-core\WEBFORM\Order.Frontend.WebForms\Utils\ApiClient.cs:linha 109
+--- Fim do rastreamento de pilha do local anterior onde a exceção foi gerada ---
+   em System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   em Order.Frontend.WebForms.Login.<AuthenticateUser>d__2.MoveNext() na C:\dev\web-forms-api-net-core\WEBFORM\Order.Frontend.WebForms\Login.aspx.cs:linha 134
+2025-02-07 21:04:17 - Error: Não foi possível autenticar, entre em contato com administrador do sistema.Detalhe: Resposta não está disponível neste contexto.
+StackTrace: 
+2025-02-07 21:24:33 - Error: Ocorreu um erro ao enviar a solicitação.
+StackTrace:    em System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   em ApiClient.<GetAsync>d__4.MoveNext() na C:\dev\web-forms-api-net-core\WEBFORM\Order.Frontend.WebForms\Utils\ApiClient.cs:linha 45
+2025-02-07 21:24:33 - Error: Não foi possível cadastrar, entre em contato com administrador do sistema.Detalhe: Erro na requisição GET para orders/order-by-status: Ocorreu um erro ao enviar a solicitação.
+StackTrace: 
