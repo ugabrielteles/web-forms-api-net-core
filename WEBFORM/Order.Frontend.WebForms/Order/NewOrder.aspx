@@ -5,7 +5,8 @@
     <asp:UpdatePanel ID="updPanel" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="row">
-                <h2 class="text-center">Nova Ordem</h2>
+                <h2>Nova Ordem</h2>
+                <hr />
 
 
                 <div class="form-group col-md-6 col-sm-12">

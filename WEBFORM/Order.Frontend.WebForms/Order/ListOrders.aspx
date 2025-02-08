@@ -38,7 +38,7 @@
                     <asp:BoundField DataField="state" HeaderText="Estado" SortExpression="State" />
                     <asp:BoundField DataField="orderStatus.name" HeaderText="Status" SortExpression="OrderStatus" />
 
-                    <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
+                    <asp:CommandField ShowEditButton="False" ShowDeleteButton="False" />
                 </Columns>
             </asp:GridView>
 

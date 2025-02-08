@@ -162,10 +162,7 @@ public class ApiClient : System.Web.UI.Page
        
         string responseBody = await response.Content.ReadAsStringAsync();
 
-        if (response.StatusCode == HttpStatusCode.Unauthorized)
-        {
-            Response.Redirect("~/Login.aspx?ReturnUrl=" + Server.UrlEncode(Request.Url.AbsolutePath));
-        }
+        response.EnsureSuccessStatusCode();
 
         if (response.IsSuccessStatusCode)
         {
