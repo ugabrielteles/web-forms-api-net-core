@@ -26,6 +26,13 @@ namespace OrderApi.Services
             _expirationMinutes = settings.ExpirationMinutes!;
         }
 
+        /// <summary>
+        /// Gera o Token JWT para o usuário
+        /// </summary>
+        /// <param name="Token"></param>
+        /// <param name="Expiration"></param>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public (string Token, long Expiration, string TokenType) CreateToken(string username)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey));
@@ -52,6 +59,11 @@ namespace OrderApi.Services
             return (Token: tokenJwt, Expiration: ((DateTimeOffset)expires).ToUnixTimeSeconds(), TokenType: "Bearer");
         }
 
+        /// <summary>
+        /// Valida se o Token JWT é válido
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
         public ClaimsPrincipal? ValidateToken(string token)
         {
             var tokenHandler = new JwtSecurityTokenHandler();

@@ -34,7 +34,7 @@ namespace OrderApi.Models
         public DbSet<DeliveryOrder> DeliveryOrders { get; set; }
 
         /// <summary>
-        /// Create database based of models Ef
+        /// Cria o banco de dados baseado nos modelos configurados no Contexto
         /// </summary>
         /// <param name="builder"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace OrderApi.Models
         }
 
         /// <summary>
-        /// Create Encrypt string by HASHBYTES(SHA2_256)
+        /// Cria uma encriptação baseado no SQL SERVER HASHBYTES(SHA2_256) para maior segurança na hora de salvar a senha do usuario
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>

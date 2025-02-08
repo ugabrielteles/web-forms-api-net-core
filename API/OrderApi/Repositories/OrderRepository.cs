@@ -17,10 +17,10 @@ namespace OrderApi.Repositories
         {
             _context = context;
         }
-        
+
         public async Task<Order> Add(Order entity)
         {
-            if(entity == null) throw new ArgumentNullException(nameof(entity));
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
 
             await _context.Orders.AddAsync(entity);
 
@@ -33,7 +33,7 @@ namespace OrderApi.Repositories
         {
             var entity = await _context.Orders.FindAsync(id);
 
-            if(entity is null)
+            if (entity is null)
             {
                 return entity!;
             }
@@ -48,7 +48,6 @@ namespace OrderApi.Repositories
         public async Task<IList<Order>> GetAll() => await _context.Orders
                 .Include(x => x.DeliveryOrder)
                 .Include(x => x.OrderStatus)
-                .AsNoTracking()
                 .ToListAsync();
 
         public async Task<Order?> GetById(int id) => await _context.Orders.Include(x => x.DeliveryOrder).Include(x => x.OrderStatus).FirstOrDefaultAsync(x => x.OrderId == id);
@@ -59,11 +58,21 @@ namespace OrderApi.Repositories
 
         public async Task<Order> Update(Order entity)
         {
-           var result = _context.Orders.Update(entity);
+            var result = _context.Orders.Update(entity);
 
-           await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-           return result.Entity;
+            return result.Entity;
+        }
+
+        public async Task<Order> UpdateOrderStatus(Order entity)
+        {
+            await _context.Orders
+               .Where(u => u.OrderId == entity.OrderId)
+               .ExecuteUpdateAsync(x => x.SetProperty(u => u.OrderStatusId, entity.OrderStatusId));
+
+            return entity;
+
         }
     }
 }

@@ -66,6 +66,17 @@ namespace OrderApi.Controllers
             return Ok(response.Entity);
         }
 
+        [HttpPatch("{orderId}/send-order-to-create")]
+        public async Task<IActionResult> SendOrderToCreate([FromRoute(Name = "orderId")] int orderId)
+        {
+            var response = await _orderService.SendOrderToCreate(orderId);
+
+            if(!response.Result.IsValid)
+               return BadRequest(response.Result.Errors);
+
+            return Ok(response.Entity);
+        }
+
         [HttpPatch("{orderId}/send-order-to-out-for-delivery")]
         public async Task<IActionResult> SendOrderToOutForDelivery([FromRoute(Name = "orderId")] int orderId)
         {

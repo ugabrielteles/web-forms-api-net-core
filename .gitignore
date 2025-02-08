@@ -1,3 +1,5 @@
 
-API/OrderApi/bin/**
-API/OrderApi/obj/**
+**/bin/**
+**/obj/**
+**/packages/**
+**/.vs/**

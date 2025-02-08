@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Microsoft.OpenApi.Models;
 using OrderApi.Extensions;
+using OrderApi.Hubs;
 using OrderApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,11 +38,25 @@ builder.Services.AddSwaggerGen(options => {
         }
     });
 });
+
 builder
     .AndResgisterApplication()
-    .AndAddAuthentication();
+    .AndAddAuthentication()
+    .AndAddSignalR();
+
+// Configure CORS
+builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
+        builder =>
+        {
+            builder.AllowAnyHeader()
+                   .AllowAnyMethod()
+                   .SetIsOriginAllowed((host) => true)
+                   .AllowCredentials();
+        }));
 
 var app = builder.Build();
+
+app.MapHub<OrderHub>("/hubs/order");
 
 // ensure database and tables exist
 {
@@ -51,7 +66,6 @@ var app = builder.Build();
 }
 
 
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -59,11 +73,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.Run();

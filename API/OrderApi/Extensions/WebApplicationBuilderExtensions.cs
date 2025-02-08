@@ -36,6 +36,7 @@ namespace OrderApi.Extensions
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
             builder.Services.AddScoped<IOrderStatusRepository, OrderStatusRepository>();
+            builder.Services.AddScoped<IDeliveryOrderRepository, DeliveryOrderRepository>();
             builder.Services.AddTransient<IUserService, UserService>();
             builder.Services.AddTransient<ITokenService, TokenService>();
             builder.Services.AddTransient<IOrderService, OrderService>();
@@ -44,6 +45,15 @@ namespace OrderApi.Extensions
                             .Bind(builder.Configuration.GetSection("AuthenticationSettings"));
 
             builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<AuthenticationSettings>>().Value);
+
+            return builder;
+        }
+
+        public static WebApplicationBuilder AndAddSignalR(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddSignalR(o => {
+                o.EnableDetailedErrors = true;
+            });
 
             return builder;
         }

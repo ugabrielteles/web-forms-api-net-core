@@ -1,0 +1,70 @@
+﻿/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .body-content {
+        padding: 0;
+    }
+}
+
+.kanban-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.kanban-column {
+    width: 320px;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 0 5px 0 5px;
+}
+
+.kanban-title {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.kanban-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 200px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px dashed #ddd;
+}
+
+.kanban-item {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)
+}
+
+.kanban-card {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: grab;
+}
+
+    .kanban-card:active {
+        cursor: grabbing;
+    }
+
+.kanban-items.dragover {
+    background-color: #e0e0e0;
+}
