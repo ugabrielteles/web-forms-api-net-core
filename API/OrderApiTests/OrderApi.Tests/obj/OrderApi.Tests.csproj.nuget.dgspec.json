@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dev\\web-forms-api-net-core\\API\\OrderApiTests\\OrderApi.Tests\\OrderApi.Tests.csproj": {}
+    "c:\\dev\\web-forms-api-net-core\\API\\OrderApiTests\\OrderApi.Tests\\OrderApi.Tests.csproj": {}
   },
   "projects": {
-    "C:\\dev\\web-forms-api-net-core\\API\\OrderApiTests\\OrderApi.Tests\\OrderApi.Tests.csproj": {
+    "c:\\dev\\web-forms-api-net-core\\API\\OrderApiTests\\OrderApi.Tests\\OrderApi.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\web-forms-api-net-core\\API\\OrderApiTests\\OrderApi.Tests\\OrderApi.Tests.csproj",
+        "projectUniqueName": "c:\\dev\\web-forms-api-net-core\\API\\OrderApiTests\\OrderApi.Tests\\OrderApi.Tests.csproj",
         "projectName": "OrderApi.Tests",
-        "projectPath": "C:\\dev\\web-forms-api-net-core\\API\\OrderApiTests\\OrderApi.Tests\\OrderApi.Tests.csproj",
+        "projectPath": "c:\\dev\\web-forms-api-net-core\\API\\OrderApiTests\\OrderApi.Tests\\OrderApi.Tests.csproj",
         "packagesPath": "C:\\Users\\telesgabriel\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\web-forms-api-net-core\\API\\OrderApiTests\\OrderApi.Tests\\obj\\",
+        "outputPath": "c:\\dev\\web-forms-api-net-core\\API\\OrderApiTests\\OrderApi.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\telesgabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,7 +27,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "c:\\dev\\web-forms-api-net-core\\API\\OrderApi\\OrderApi.csproj": {
+                "projectPath": "c:\\dev\\web-forms-api-net-core\\API\\OrderApi\\OrderApi.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -43,6 +47,14 @@
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.5.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.72, )"
+            },
+            "Moq.AutoMock": {
+              "target": "Package",
+              "version": "[3.6.0-ci0596, )"
             },
             "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -73,6 +85,90 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\dev\\web-forms-api-net-core\\API\\OrderApi\\OrderApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\dev\\web-forms-api-net-core\\API\\OrderApi\\OrderApi.csproj",
+        "projectName": "OrderApi",
+        "projectPath": "c:\\dev\\web-forms-api-net-core\\API\\OrderApi\\OrderApi.csproj",
+        "packagesPath": "C:\\Users\\telesgabriel\\.nuget\\packages\\",
+        "outputPath": "c:\\dev\\web-forms-api-net-core\\API\\OrderApi\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\telesgabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.9.2, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.AspNetCore.SignalR": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
